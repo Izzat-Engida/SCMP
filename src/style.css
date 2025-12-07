@@ -99,3 +99,29 @@ header {
 
 .register-btn:hover { background: #218838; }
 .registered { background: #6c757d !important; cursor: not-allowed; }
+.success-banner {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #28a745;
+    color: white;
+    padding: 15px 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    z-index: 9999;
+    animation: slideDown 0.6s ease-out;
+    font-weight: bold;
+}
+
+@keyframes slideDown {
+    from { top: -100px; opacity: 0; }
+    to   { top: 20px; opacity: 1; }
+}
+
+#myRegistrationsList {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 15px;
+}
