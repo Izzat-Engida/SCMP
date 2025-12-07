@@ -119,3 +119,15 @@ header {
     from { top: -100px; opacity: 0; }
     to   { top: 20px; opacity: 1; }
 }
+/* CR-002: My Registrations styling */
+.my-registrations {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+.my-registrations .event-card {
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+}
