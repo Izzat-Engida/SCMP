@@ -1,64 +1,136 @@
-document.addEventListener('DOMContentLoaded', ()=>{
-    const loginform=document.getElementById('loginform')
-    if(loginform){
-        loginform.addEventListener('submit',(e)=>{
+let events = [];
+const myRegistrationsKey = 'myRegistrations'; 
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const loginForm = document.getElementById('loginform'); 
+    if (loginForm) {
+        loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const username=document.getElementById('username').value;
-            const password=document.getElementById('password').value;
-            if(username==='admin' && password==='123'){
-                localStorage.setItem('loggedIn','true');
-                window.location.href='dashboard.html';
-            }else{
-                document.getElementById('errorMsg').textContent='Invalid credentials';
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+
+            if (username === 'admin' && password === '123') {
+                localStorage.setItem('loggedIn', 'true');
+                window.location.href = 'dashboard.html';
+            } else {
+                document.getElementById('errorMsg').textContent = 'Invalid credentials!';
             }
-        })
+        });
+        return; // no need to run dashboard code on login page
     }
-    if(window.location.pathname.includes('dashboard.html')){
-        if(localStorage.getItem('loggedIn')!=='true'){
-            window.location.href='index.html';
-            return;
-        }
-        document.getElementById('logoutBtn').addEventListener('click',()=>{
+
+    // =============== DASHBOARD PAGE ===============
+    if (!window.location.pathname.includes('dashboard.html')) return;
+
+    if (localStorage.getItem('loggedIn') !== 'true') {
+        window.location.href = 'index.html';
+        return;
+    }
+
+
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
             localStorage.removeItem('loggedIn');
-            window.location.href='index.html';
-        }
-    )
-    fetch('events.json')
-    .then(res=>res.json())
-    .then(data=>{
-        const continer=document.getElementById('eventsList');
-        data.forEach(event=>{
-            const card=document.createElement('div');
-            card.className='event-card';
-            card.innerHTML=`
+            localStorage.removeItem(myRegistrationsKey);
+            window.location.href = 'index.html';
+        });
+    }
+
+ 
+    fetch('events.json') 
+        .then(res => res.json())
+        .then(data => {
+            events = data;
+            displayEvents();
+            displayMyRegistrations(); // CR-002
+        })
+        .catch(err => console.error('Error loading events:', err));
+
+
+    function displayEvents() {
+        const container = document.getElementById('eventsList');
+        if (!container) return;
+        container.innerHTML = '';
+
+        events.forEach(event => {
+            const alreadyRegistered = getMyRegistrations().includes(event.id);
+
+            const card = document.createElement('div');
+            card.className = 'event-card';
+            card.innerHTML = `
                 <h3>${event.name}</h3>
                 <p><strong>Date:</strong> ${event.date}</p>
                 <p><strong>Location:</strong> ${event.location}</p>
                 <p>${event.description}</p>
-                <button class="register-btn" data-id="${event.id}">Register</button>
+                <button class="register-btn ${alreadyRegistered ? 'registered' : ''}" 
+                        data-id="${event.id}" ${alreadyRegistered ? 'disabled' : ''}>
+                    ${alreadyRegistered ? 'Already Registered' : 'Register'}
+                </button>
             `;
-            continer.appendChild(card);
-        })
-    document.querySelectorAll('.register-btn').forEach(btn=>{
-        btn.addEventListener('click',()=>{
-            const eventId=btn.dataset.id;
-            fetch('registration.json')
-            .then(res=>res.json())
-            .then(data=>{
-                if(!data.registrations.includes(eventId)){
-                    data.registrations.push(eventId);
-                    const banner = document.createElement('div');
-                    banner.className = 'success-banner';
-                    banner.textContent = 'Successfully registered for the event!';
-                    document.body.appendChild(banner);
-                    setTimeout(() => banner.remove(), 5000);
-                    btn.textContent='Registered';
-                    btn.classList.add('registered');
-                    btn.disabled=true;
+            container.appendChild(card);
+        });
+
+
+        document.querySelectorAll('.register-btn:not(.registered)').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const eventId = btn.dataset.id;
+                const event = events.find(e => e.id === eventId);
+
+                const banner = document.createElement('div');
+                banner.className = 'success-banner';
+                banner.textContent = `Successfully registered for "${event.name}"!`;
+                document.body.appendChild(banner);
+                setTimeout(() => banner.remove(), 5000);
+
+                const myRegs = getMyRegistrations();
+                if (!myRegs.includes(eventId)) {
+                    myRegs.push(eventId);
+                    localStorage.setItem(myRegistrationsKey, JSON.stringify(myRegs));
                 }
-            })
-        })
-    })
-    })
+
+          
+                btn.textContent = 'Already Registered';
+                btn.classList.add('registered');
+                btn.disabled = true;
+
+
+                displayMyRegistrations();
+            });
+        });
     }
-})
+
+   
+    function displayMyRegistrations() {
+        const container = document.getElementById('myRegistrationsList');
+        if (!container) return;
+
+        const myRegs = getMyRegistrations();
+
+        if (myRegs.length === 0) {
+            container.innerHTML = '<p style="color:white;">You have not registered for any events yet.</p>';
+            return;
+        }
+
+        container.innerHTML = '';
+        myRegs.forEach(id => {
+            const event = events.find(e => e.id === id);
+            if (event) {
+                const card = document.createElement('div');
+                card.className = 'event-card';
+                card.innerHTML = `
+                    <h3>${event.name}</h3>
+                    <p><strong>Date:</strong> ${event.date}</p>
+                    <p><strong>Location:</strong> ${event.location}</p>
+                `;
+                container.appendChild(card);
+            }
+        });
+    }
+
+
+    function getMyRegistrations() {
+        return JSON.parse(localStorage.getItem(myRegistrationsKey) || '[]');
+    }
+});
