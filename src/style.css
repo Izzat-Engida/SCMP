@@ -99,3 +99,23 @@ header {
 
 .register-btn:hover { background: #218838; }
 .registered { background: #6c757d !important; cursor: not-allowed; }
+/* CR-001: Success banner */
+.success-banner {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #28a745;
+    color: white;
+    padding: 16px 32px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    z-index: 10000;
+    font-weight: bold;
+    animation: slideDown 0.6s ease-out;
+}
+
+@keyframes slideDown {
+    from { top: -100px; opacity: 0; }
+    to   { top: 20px; opacity: 1; }
+}

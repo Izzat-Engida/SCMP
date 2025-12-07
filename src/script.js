@@ -47,7 +47,11 @@ document.addEventListener('DOMContentLoaded', ()=>{
             .then(data=>{
                 if(!data.registrations.includes(eventId)){
                     data.registrations.push(eventId);
-                    alert('Registered successfully!');
+                    const banner = document.createElement('div');
+                    banner.className = 'success-banner';
+                    banner.textContent = 'Successfully registered for the event!';
+                    document.body.appendChild(banner);
+                    setTimeout(() => banner.remove(), 5000);
                     btn.textContent='Registered';
                     btn.classList.add('registered');
                     btn.disabled=true;
