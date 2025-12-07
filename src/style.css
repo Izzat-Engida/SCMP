@@ -130,4 +130,11 @@ header {
 .my-registrations .event-card {
     background: rgba(255,255,255,0.95);
     backdrop-filter: blur(10px);
+}\/* CR-003: Seats display */
+.seats { 
+    margin: 12px 0; 
+    font-weight: bold; 
+}
+.seats.full { 
+    color: #dc3545; 
 }

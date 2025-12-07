@@ -1,3 +1,5 @@
+const e = require("cors");
+
 let events = [];
 const myRegistrationsKey = 'myRegistrations'; 
 
@@ -55,6 +57,9 @@ document.addEventListener('DOMContentLoaded', () => {
         container.innerHTML = '';
 
         events.forEach(event => {
+            const remaining=event.capacity - event.registered;
+            const isFull= remaining <=0;
+
             const alreadyRegistered = getMyRegistrations().includes(event.id);
 
             const card = document.createElement('div');
@@ -64,9 +69,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p><strong>Date:</strong> ${event.date}</p>
                 <p><strong>Location:</strong> ${event.location}</p>
                 <p>${event.description}</p>
-                <button class="register-btn ${alreadyRegistered ? 'registered' : ''}" 
-                        data-id="${event.id}" ${alreadyRegistered ? 'disabled' : ''}>
-                    ${alreadyRegistered ? 'Already Registered' : 'Register'}
+                <p class="seats ${isFull ? 'full' : ''}">
+                <strong>Seats Available:</strong> ${isFull ? 'Full' : remaining +'/'+ event.capacity}
+                </p>
+                <button class="register-btn ${isFull || alreadyRegistered ? 'registered' : ''}" 
+                        data-id="${event.id}" ${isFull || alreadyRegistered ? 'disabled' : ''}>
+                    ${alreadyRegistered ? 'Already Registered' : isFull? 'event full':'Register'}
                 </button>
             `;
             container.appendChild(card);
@@ -83,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 banner.textContent = `Successfully registered for "${event.name}"!`;
                 document.body.appendChild(banner);
                 setTimeout(() => banner.remove(), 5000);
-
+                event.registered += 1;
                 const myRegs = getMyRegistrations();
                 if (!myRegs.includes(eventId)) {
                     myRegs.push(eventId);
@@ -95,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.classList.add('registered');
                 btn.disabled = true;
 
-
+                displayEvents();
                 displayMyRegistrations();
             });
         });

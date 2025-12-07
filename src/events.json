@@ -1,23 +1,29 @@
 [
-    {
-        "id": "1",
-        "name": "National Software Engineering Conference 2025",
-        "date": "December 20, 2025",
-        "location": "Addis Ababa Science & Technology University",
-        "description": "Annual conference for software engineers in Ethiopia. Features talks on modern development practices."
-    },
-    {
-        "id": "2",
-        "name": "Python Ethiopia Meetup",
-        "date": "January 15, 2026",
-        "location": "Harmony Hotel, Addis Ababa",
-        "description": "Hands-on Python workshops and networking."
-    },
-    {
-        "id": "3",
-        "name": "Web Development Bootcamp",
-        "date": "February 5-7, 2026",
-        "location": "Online + AASTU Campus",
-        "description": "3-day intensive bootcamp on React, Node.js and modern web tech."
-    }
+  {
+    "id": "1",
+    "name": "National Software Engineering Conference 2025",
+    "date": "December 20, 2025",
+    "location": "Addis Ababa Science & Technology University",
+    "description": "Annual conference for software engineers in Ethiopia.",
+    "capacity": 100,
+    "registered": 0
+  },
+  {
+    "id": "2",
+    "name": "Python Ethiopia Meetup",
+    "date": "January 15, 2026",
+    "location": "Harmony Hotel, Addis Ababa",
+    "description": "Hands-on Python workshops and networking.",
+    "capacity": 50,
+    "registered": 0
+  },
+  {
+    "id": "3",
+    "name": "Web Development Bootcamp",
+    "date": "February 5-7, 2026",
+    "location": "Online + AASTU Campus",
+    "description": "3-day intensive bootcamp on React, Node.js and modern web tech.",
+    "capacity": 30,
+    "registered": 28
+  }
 ]
