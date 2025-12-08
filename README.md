@@ -8,7 +8,7 @@ A mini-project for Software Configuration Management course.
 - Register for any event (saved in registrations.json)
 
 ## Requirements (simple)
-1. User must log in (username: admin, password: password123)
+1. User must log in (username: admin, password: 123)
 2. After login → view event dashboard
 3. Click "Register" on any event → registration recorded
 
