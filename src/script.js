@@ -1,5 +1,3 @@
-const e = require("cors");
-
 let events = [];
 const myRegistrationsKey = 'myRegistrations'; 
 
@@ -19,10 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('errorMsg').textContent = 'Invalid credentials!';
             }
         });
-        return; // no need to run dashboard code on login page
+        return; 
     }
 
-    // =============== DASHBOARD PAGE ===============
+
     if (!window.location.pathname.includes('dashboard.html')) return;
 
     if (localStorage.getItem('loggedIn') !== 'true') {
@@ -46,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             events = data;
             displayEvents();
-            displayMyRegistrations(); // CR-002
+            displayMyRegistrations(); 
         })
         .catch(err => console.error('Error loading events:', err));
 
