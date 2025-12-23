@@ -16,7 +16,7 @@ All CIs from BL1 plus the following updated items at version **v1.1**:
 
 | CI ID  | Configuration Item       | Version | Owner         |
 |-------|--------------------------|---------|---------------|
-| CI-005| dashboard.html           | v1.1    | Kaleab M.     |
+| CI-005| dashboard.html           | v1.1    | Izzat         |
 | CI-006| style.css                | v1.1    | Kumneger      |
 | CI-007| script.js                | v1.1    | Kaleab H.     |
 | CI-008| events.json              | v1.1    | Jonathan      |
