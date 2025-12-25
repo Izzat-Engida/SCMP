@@ -1,140 +1,192 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .container {
-    width: 90%;
-    max-width: 1000px;
-    margin: 20px auto;
-    padding: 20px;
+  width: 90%;
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 20px;
 }
 
 .login-box {
-    background: white;
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-    text-align: center;
-    width: 100%;
-    max-width: 400px;
+  background: white;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
 }
 
 .login-box h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
-    color: #667eea;
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  color: #667eea;
 }
 
 .login-box p {
-    color: #666;
-    margin-bottom: 30px;
+  color: #666;
+  margin-bottom: 30px;
 }
 
 input {
-    width: 100%;
-    padding: 15px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 1em;
+  width: 100%;
+  padding: 15px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1em;
 }
 
 button {
-    width: 100%;
-    padding: 15px;
-    background: #667eea;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 1.1em;
-    cursor: pointer;
-    transition: 0.3s;
+  width: 100%;
+  padding: 15px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-button:hover { background: #5a6fd8; }
+button:hover {
+  background: #5a6fd8;
+}
 
-.error { color: red; margin-top: 10px; }
+.error {
+  color: red;
+  margin-top: 10px;
+}
 
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-    color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  color: white;
+}
+
+/* Utility: center children in a container */
+.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Landing page helpers (no card) */
+.landing {
+  text-align: center;
+  color: white;
+}
+.landing h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+.landing p {
+  max-width: 720px;
+  margin: 0 auto 20px;
+}
+.landing .actions {
+  margin-top: 16px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+.landing .actions button {
+  width: auto;
+  min-width: 140px;
 }
 
 #logoutBtn {
-    width: auto;
-    padding: 10px 20px;
+  width: auto;
+  padding: 10px 20px;
 }
 
 .event-card {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .event-card h3 {
-    color: #667eea;
-    margin-bottom: 10px;
+  color: #667eea;
+  margin-bottom: 10px;
 }
 
 .register-btn {
-    background: #28a745;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
 }
 
-.register-btn:hover { background: #218838; }
-.registered { background: #6c757d !important; cursor: not-allowed; }
+.register-btn:hover {
+  background: #218838;
+}
+.registered {
+  background: #6c757d !important;
+  cursor: not-allowed;
+}
 /* CR-001: Success banner */
 .success-banner {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #28a745;
-    color: white;
-    padding: 16px 32px;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    z-index: 10000;
-    font-weight: bold;
-    animation: slideDown 0.6s ease-out;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #28a745;
+  color: white;
+  padding: 16px 32px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  z-index: 10000;
+  font-weight: bold;
+  animation: slideDown 0.6s ease-out;
 }
 
 @keyframes slideDown {
-    from { top: -100px; opacity: 0; }
-    to   { top: 20px; opacity: 1; }
+  from {
+    top: -100px;
+    opacity: 0;
+  }
+  to {
+    top: 20px;
+    opacity: 1;
+  }
 }
 /* CR-002: My Registrations styling */
 .my-registrations {
-    margin-top: 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 20px;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
 }
 
 .my-registrations .event-card {
-    background: rgba(255,255,255,0.95);
-    backdrop-filter: blur(10px);
-}\/* CR-003: Seats display */
-.seats { 
-    margin: 12px 0; 
-    font-weight: bold; 
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
 }
-.seats.full { 
-    color: #dc3545; 
+/* CR-003: Seats display */
+.seats {
+  margin: 12px 0;
+  font-weight: bold;
+}
+.seats.full {
+  color: #dc3545;
 }
