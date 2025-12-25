@@ -24,26 +24,14 @@ Built entirely with vanilla technologies --no frameworks or backend required.
 ### Login Page
 Clean and centered login form with modern styling.
 
-![Login Page 1](https://via.placeholder.com/800x600?text=Login+Page+1)  
-![Login Page 2](https://via.placeholder.com/800x600?text=Login+Page+2)
-
 ### Event Dashboard
 Upcoming events displayed as elegant cards with registration buttons and seat counters.
-
-![Event Dashboard 1](https://via.placeholder.com/800x600?text=Event+Dashboard+1)  
-![Event Dashboard 2](https://via.placeholder.com/800x600?text=Event+Dashboard+2)  
-![Event Dashboard 3](https://via.placeholder.com/800x600?text=Event+Dashboard+3)
 
 ### Success Notification
 Green slide-down banner appears on successful registration.
 
-![Success Notification 1](https://via.placeholder.com/800x600?text=Success+Banner+1)
-
-### My Registrations
+## My Registrations
 Grid view of events the user has registered for.
-
-![My Registrations 1](https://via.placeholder.com/800x600?text=My+Registrations+1)  
-![My Registrations 2](https://via.placeholder.com/800x600?text=My+Registrations+2)
 
 ## Tech Stack
 - **HTML5**
